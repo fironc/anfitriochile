@@ -3,138 +3,198 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Anfitrio Chile – Chequeo Rápido Airbnb</title>
-  <meta name="description" content="Anfitrio Chile: valida si tu inversión Airbnb realmente da. Reporte visual con ADR, ocupación, comparables y recomendación final en 48 horas." />
+  <title>Anfitrio Chile — Chequeo que te dice si conviene (en 48h)</title>
+  <meta name="description" content="Antes de comprar un depto para Airbnb, valida si realmente conviene. Chequeo visual, claro y sin tecnicismos: comparables reales, ingreso estimado y recomendación final en 48 horas.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg:#FAFAFA;
-      --text:#1A1A1A;
-      --subtext:#4B5563;
-      --line:#ECEFF1;
-      --primary:#0E7C7B;
-      --primary-hover:#0b6464;
-      --accent:#F4B942;
-      --radius:14px;
-      --shadow:0 10px 30px rgba(0,0,0,.06);
-      --maxw:980px;
+    :root{
+      --bg:#FAFAFA; --paper:#FFFFFF; --ink:#111827; --muted:#6B7280; --line:#E5E7EB;
+      --teal:#0E7C7B; --teal-2:#0b6464; --gold:#F4B942; --rose:#EF4444; --amber:#F59E0B; --emerald:#10B981;
+      --radius:16px; --shadow:0 10px 30px rgba(0,0,0,.06); --maxw:1040px;
     }
-    * { box-sizing: border-box; }
-    html, body { margin:0; padding:0; background:var(--bg); color:var(--text); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; line-height:1.6; }
-    a { color:var(--primary); text-decoration:none; }
-    a:hover { opacity:.9; }
-    .wrap { max-width:var(--maxw); margin:0 auto; padding:32px 20px; }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.65}
+    img{max-width:100%;display:block}
+    a{color:var(--teal);text-decoration:none}
+    a:hover{opacity:.95}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:28px 20px}
 
-    /* Header */
-    header { display:flex; justify-content:space-between; align-items:center; padding:20px 0; }
-    header img { height:42px; }
-    header nav a { margin-left:18px; font-weight:500; color:var(--subtext); }
+    /* Top bar */
+    .top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:40px}
+    .brand .wordmark{font-family:"Space Grotesk",Inter,sans-serif;font-weight:700;letter-spacing:.2px}
+    .top nav a{color:var(--muted);font-weight:500;margin-left:16px}
 
-    /* Hero */
-    .hero { padding:70px 0 40px; display:grid; grid-template-columns:1.2fr .8fr; gap:32px; align-items:center; }
-    .hero h1 { font-family:"Space Grotesk",Inter,sans-serif; font-size:46px; font-weight:700; line-height:1.1; margin-bottom:16px; }
-    .hero p { color:var(--subtext); font-size:18px; margin-bottom:26px; }
-    .cta-row { display:flex; flex-wrap:wrap; gap:12px; }
-    .btn { border:none; border-radius:999px; padding:14px 22px; font-weight:600; cursor:pointer; transition:.2s all; box-shadow:0 8px 20px rgba(14,124,123,.15); }
-    .btn.primary { background:var(--primary); color:#fff; }
-    .btn.primary:hover { background:var(--primary-hover); }
-    .btn.secondary { background:#fff; color:var(--primary); border:1px solid var(--line); }
+    /* HERO */
+    .hero{position:relative;isolation:isolate}
+    .hero-bg{position:absolute;inset:0;z-index:-1;background:radial-gradient(1200px 600px at 20% -10%, #DBFFF7, transparent 60%), radial-gradient(800px 500px at 110% -20%, #FFF4D9, transparent 55%)}
+    .hero .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:center;padding:60px 0 36px}
+    .eyebrow{display:inline-block;background:#E7F7F5;color:var(--teal);font-weight:600;padding:6px 10px;border-radius:999px;border:1px solid #D1F0EC;margin-bottom:14px}
+    h1{font-family:"Space Grotesk",Inter,sans-serif;font-weight:700;font-size:52px;line-height:1.1;margin:0 0 14px}
+    .sub{color:var(--muted);font-size:18px;margin:0 0 22px}
+    .ctas{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:999px;padding:14px 22px;font-weight:700;cursor:pointer;transition:.2s transform,.2s background,.2s box-shadow}
+    .btn:active{transform:translateY(1px)}
+    .btn.primary{background:var(--teal);color:#fff;box-shadow:0 10px 22px rgba(14,124,123,.16)}
+    .btn.primary:hover{background:var(--teal-2)}
+    .btn.secondary{background:#fff;color:var(--teal);border:1px solid var(--line)}
+    .hero-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:12px}
+    .hero-img{border-radius:12px;height:360px;background:url('HERO_IMAGE_URL') center/cover no-repeat}
 
-    /* Hero Image */
-    .hero-img { border-radius:16px; height:360px; background:url('HERO_IMAGE_URL') center/cover no-repeat; border:1px solid var(--line); box-shadow:var(--shadow); }
+    /* PROBLEM */
+    .section{padding:46px 0}
+    h2{font-family:"Space Grotesk",Inter,sans-serif;font-size:30px;margin:0 0 12px}
+    .muted{color:var(--muted)}
+    .problem{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+    .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
 
-    /* Teaser Section */
-    .section { padding:50px 0; }
-    .section h2 { font-family:"Space Grotesk",Inter,sans-serif; font-weight:700; font-size:28px; margin-bottom:14px; }
-    .teaser { display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center; }
-    .preview { position:relative; border-radius:16px; overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow); }
-    .preview img { width:100%; height:auto; display:block; filter:blur(10px); opacity:.75; transform:scale(1.03); }
-    .veil { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(2px); background:rgba(250,250,250,.6); }
-    .veil .badge { background:#fff; padding:14px 18px; border:1px dashed var(--line); border-radius:12px; font-weight:600; color:var(--subtext); }
+    /* TEASER */
+    .teaser{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+    .preview{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
+    .preview img{width:100%;filter:blur(10px);opacity:.78;transform:scale(1.03)}
+    .veil{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(255,255,255,.45), rgba(255,255,255,.85));backdrop-filter:blur(1px)}
+    .badge{background:#fff;border:1px dashed var(--line);padding:12px 14px;border-radius:10px;font-weight:600;color:var(--muted)}
 
-    /* Proof Section */
-    .proof { display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center; }
-    .avatar { width:80px; height:80px; border-radius:50%; background:url('PROFILE_IMAGE_URL') center/cover no-repeat; border:2px solid #fff; box-shadow:var(--shadow); }
-    .quote { border-left:4px solid var(--primary); padding:14px 18px; background:#fff; border-radius:10px; border:1px solid var(--line); }
+    /* WHAT YOU GET */
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+    .chip{background:#fff;border:1px solid var(--line);padding:8px 12px;border-radius:999px;color:#334155}
 
-    /* Footer */
-    footer { padding:40px 0; border-top:1px solid var(--line); color:var(--subtext); font-size:14px; text-align:center; }
+    /* VERDICT ROW */
+    .verdicts{display:flex;gap:10px;margin:12px 0 0}
+    .pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 12px;border:1px solid var(--line);background:#fff;font-weight:600}
+    .ok{color:var(--emerald)} .warn{color:var(--amber)} .no{color:var(--rose)}
 
-    @media (max-width:860px) {
-      .hero, .teaser, .proof { grid-template-columns:1fr; }
-      .hero-img { height:240px; }
-      .hero h1 { font-size:36px; }
+    /* PROOF */
+    .proof{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+    .avatar{width:80px;height:80px;border-radius:50%;background:url('PROFILE_IMAGE_URL') center/cover no-repeat;border:2px solid #fff;box-shadow:var(--shadow)}
+    .quote{border-left:4px solid var(--teal);padding:14px 18px;background:#fff;border-radius:10px;border:1px solid var(--line)}
+
+    /* FOOTER */
+    footer{padding:40px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+    footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+    /* RESPONSIVE */
+    @media (max-width: 940px){
+      .hero .grid,.problem,.teaser,.proof{grid-template-columns:1fr}
+      .hero-img{height:240px}
+      h1{font-size:40px}
     }
   </style>
 </head>
 <body>
-  <header class="wrap">
-    <img src="LOGO_IMAGE_URL" alt="Anfitrio Chile logo" />
+  <div class="wrap top">
+    <div class="brand">
+      <img src="LOGO_IMAGE_URL" alt="Anfitrio Chile" />
+      <span class="wordmark">Anfitrio Chile</span>
+    </div>
     <nav>
-      <a href="https://www.instagram.com/anfitriochile" target="_blank">@anfitriochile</a>
+      <a href="https://www.instagram.com/anfitriochile" target="_blank" rel="noopener">@anfitriochile</a>
     </nav>
-  </header>
+  </div>
 
-  <section class="wrap hero">
-    <div>
-      <h1>Antes de comprar un depto para Airbnb,<br>valida si realmente <span style="color:var(--primary)">da los números</span>.</h1>
-      <p>Chequeo Rápido por <strong>Anfitrio Chile</strong>. Reporte visual con ADR, ocupación, comparables y recomendación final en 24–48h.</p>
-      <div class="cta-row">
-        <a href="FLOW_REPORT_URL" target="_blank" class="btn primary">Comprar Chequeo — $34.990 CLP</a>
-        <a href="#preview" class="btn secondary">Ver ejemplo parcial</a>
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="wrap grid">
+      <div>
+        <span class="eyebrow">Chequeo claro, sin tecnicismos</span>
+        <h1>¿Estás por comprar un departamento para Airbnb?</h1>
+        <p class="sub">Te digo si realmente <strong>conviene</strong> antes de invertir. En 48 horas recibes un <strong>reporte visual</strong> con comparables reales, ingreso estimado y una recomendación directa.</p>
+        <div class="ctas">
+          <a class="btn primary" href="FLOW_REPORT_URL" target="_blank" rel="noopener">Comprar Chequeo — $34.990</a>
+          <a class="btn secondary" href="#preview">Ver ejemplo parcial</a>
+        </div>
+      </div>
+      <div class="hero-card" aria-hidden="true">
+        <div class="hero-img"></div>
       </div>
     </div>
-    <div class="hero-img" aria-hidden="true"></div>
+  </section>
+
+  <section class="wrap section problem">
+    <div>
+      <h2>Tienes dudas que los corredores no te van a responder</h2>
+      <p class="muted">La mayoría compra con promesas de ocupación y números redondos. En la práctica, los resultados cambian por ubicación, amenities y competencia. Aquí obtienes <strong>claridad</strong> antes de firmar.</p>
+      <div class="chips">
+        <span class="chip">¿Con o sin estacionamiento?</span>
+        <span class="chip">¿Bodega suma o no?</span>
+        <span class="chip">¿Studio vs 1 dormitorio?</span>
+        <span class="chip">¿En qué comuna conviene?</span>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="margin:0 0 8px">Qué analizo</h3>
+      <ul style="margin:0;padding-left:18px;color:#374151">
+        <li>Ingresos y ocupación de comparables reales (Airbnb/Booking)</li>
+        <li>Impacto de amenities (estacionamiento, bodega, tamaño)</li>
+        <li>Estacionalidad y riesgos del edificio</li>
+        <li>Rango de ingreso realista y próxima acción</li>
+      </ul>
+    </div>
   </section>
 
   <section id="preview" class="wrap section teaser">
     <div class="preview">
-      <img src="REPORT_IMAGE_URL" alt="Ejemplo borroso del reporte Airbnb" />
-      <div class="veil"><div class="badge">Vista parcial — tu reporte llega limpio en PDF</div></div>
+      <img src="REPORT_IMAGE_URL" alt="Vista previa borrosa del reporte Anfitrio" />
+      <div class="veil"><div class="badge">Ejemplo parcial — el tuyo llega limpio en PDF</div></div>
     </div>
     <div>
-      <h2>Qué incluye tu reporte</h2>
-      <ul>
-        <li>ADR promedio y ocupación estimada en tu microzona</li>
-        <li>3 comparables reales con enlaces + sensibilidad ±10%</li>
-        <li>Riesgos clave (reglamento, estacionalidad, competencia)</li>
-        <li>Recomendación final: comprar, negociar o descartar</li>
+      <h2>Qué recibes</h2>
+      <p class="muted">Un 1‑pager claro para decidir con seguridad, sin Excel ni jerga técnica.</p>
+      <ul style="margin:0 0 12px;padding-left:18px;color:#374151">
+        <li>Ingreso mensual estimado (rango realista)</li>
+        <li>3 comparables con enlaces + sensibilidad ±10%</li>
+        <li>Riesgos clave del edificio y la zona</li>
+        <li>Recomendación final explicada</li>
       </ul>
-      <div class="cta-row" style="margin-top:20px">
-        <a href="FLOW_REPORT_URL" target="_blank" class="btn primary">Quiero mi reporte</a>
-        <a href="FLOW_STARTER_URL" target="_blank" class="btn secondary">Starter Call + Reporte — $99.990</a>
+      <div class="verdicts">
+        <span class="pill ok">✅ Conviene</span>
+        <span class="pill warn">⚠️ Conviene con ajustes</span>
+        <span class="pill no">❌ No conviene</span>
+      </div>
+      <div class="ctas" style="margin-top:16px">
+        <a class="btn primary" href="FLOW_REPORT_URL" target="_blank" rel="noopener">Quiero mi chequeo</a>
+        <a class="btn secondary" href="FLOW_STARTER_URL" target="_blank" rel="noopener">Starter Call + Reporte — $99.990</a>
       </div>
     </div>
   </section>
 
   <section class="wrap section proof">
     <div>
-      <h2>Por qué hacerlo</h2>
-      <p>Muchos inversionistas compran proyectando 80% de ocupación y terminan con 40%. No por mala suerte, sino por falta de validación previa con datos reales. Este chequeo te evita errores caros.</p>
-      <div class="quote">“El 1‑pager me ahorró avanzar con un estudio en Ñuñoa: números lindos en el brochure, pero el RevPAR real quedaba 22% abajo.”</div>
-    </div>
-    <div>
-      <div style="display:flex;align-items:center;gap:14px">
-        <div class="avatar"></div>
+      <h2>Quién está detrás</h2>
+      <div style="display:flex;align-items:center;gap:14px;margin:8px 0 10px">
+        <div class="avatar" aria-hidden="true"></div>
         <div>
           <strong>Francisco Fierro</strong><br>
-          <span style="color:var(--subtext)">Fundador · Duke MBA</span>
+          <span class="muted">Fundador de Anfitrio · Duke MBA</span>
         </div>
       </div>
-      <p style="margin-top:14px;color:var(--subtext)">Datos de Airbnb, Booking y PriceLabs. Entrega express y soporte directo por WhatsApp.</p>
+      <p class="muted">He analizado decenas de unidades en Santiago, Valparaíso y Pucón. Uso datos reales y los traduzco a decisiones simples: comprar, negociar o descartar.</p>
+      <p class="muted">Sígueme en Instagram para ver casos y aprendizajes: <a href="https://www.instagram.com/anfitriochile" target="_blank" rel="noopener">@anfitriochile</a></p>
+    </div>
+    <div>
+      <h2>Lo que dicen</h2>
+      <div class="quote">“Iba a comprar en Ñuñoa. El chequeo de Anfitrio mostró ocupación real 45%, no 70%. Me ahorré una mala compra.” — <strong>Claudia</strong></div>
+      <div class="quote" style="margin-top:10px">“Claro, directo y accionable. En 24h tenía una decisión.” — <strong>Matías</strong></div>
     </div>
   </section>
 
   <section class="wrap section" style="text-align:center">
-    <h2>Listo para validar tu inversión</h2>
-    <a href="FLOW_REPORT_URL" target="_blank" class="btn primary">Comprar Chequeo — $34.990 CLP</a>
-    <p style="color:var(--subtext);margin-top:10px">Recibes tu reporte PDF en menos de 48 horas.</p>
+    <h2>Evita comprar a ciegas</h2>
+    <p class="muted">El chequeo que todo inversionista debería hacer antes de firmar.</p>
+    <div class="ctas" style="justify-content:center">
+      <a class="btn primary" href="FLOW_REPORT_URL" target="_blank" rel="noopener">Comprar Chequeo — $34.990</a>
+      <a class="btn secondary" href="FLOW_STARTER_URL" target="_blank" rel="noopener">Starter Call + Reporte</a>
+    </div>
   </section>
 
-  <footer>
-    © <span id="y"></span> Anfitrio Chile · contacto@anfitrio.cl · Santiago de Chile
+  <footer class="wrap">
+    <div class="row">
+      <div>© <span id="y"></span> Anfitrio Chile · contacto@anfitrio.cl</div>
+      <div class="muted">Asesoría informativa; no constituye garantía de resultados.</div>
+    </div>
   </footer>
 
   <script>
