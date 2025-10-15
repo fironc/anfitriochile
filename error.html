@@ -1,8 +1,57 @@
-<!doctype html><html lang="es"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Error de pago – Anfitrio</title>
-</head><body style="font-family:Inter,system-ui;max-width:720px;margin:40px auto;padding:0 16px">
-<h1>Pago cancelado o con error</h1>
-<p>No se procesó el pago. Si necesitas ayuda, escríbeme: contacto@anfitrio.cl</p>
-<a href="/" style="display:inline-block;margin-top:12px">Intentar de nuevo</a>
-</body></html>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pago no completado — Anfitrio</title>
+  <meta name="description" content="Pago cancelado o con error. Intenta nuevamente o contáctanos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#FAFAFA; --paper:#FFFFFF; --ink:#111827; --muted:#6B7280;
+      --teal:#0E7C7B; --teal-2:#0b6464; --line:#E5E7EB; --radius:16px; --shadow:0 10px 30px rgba(0,0,0,.06);
+      --rose:#EF4444;
+    }
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui}
+    .wrap{max-width:860px;margin:0 auto;padding:28px 20px}
+    header{display:flex;align-items:center;gap:12px;margin:8px 0 24px}
+    header img{height:40px}
+    header .wordmark{font-family:"Space Grotesk",Inter,sans-serif;font-weight:700;letter-spacing:.2px}
+    .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px}
+    .title{display:flex;align-items:center;gap:14px;margin:0 0 6px}
+    .x{width:36px;height:36px;border-radius:50%;background:#FEE2E2;display:inline-flex;align-items:center;justify-content:center;color:var(--rose);font-size:20px;border:1px solid #FECACA}
+    h1{font-family:"Space Grotesk",Inter,sans-serif;font-size:28px;margin:0}
+    p{color:var(--muted);margin:10px 0 0;line-height:1.7}
+    .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .btn{display:inline-block;background:var(--teal);color:#fff;padding:12px 18px;border-radius:999px;text-decoration:none;font-weight:700}
+    .btn:hover{background:var(--teal-2)}
+    .ghost{background:#fff;color:var(--teal);border:1px solid var(--line)}
+    footer{margin-top:28px;color:var(--muted);font-size:14px;text-align:center}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img src="/img/anfitriochile.png" alt="Anfitrio Chile">
+      <span class="wordmark">Anfitrio Chile</span>
+    </header>
+
+    <div class="card">
+      <div class="title">
+        <span class="x">✕</span>
+        <h1>Pago cancelado o con error</h1>
+      </div>
+      <p>No se procesó el pago. Puedes intentar nuevamente o escribirnos y te ayudamos a completarlo.</p>
+
+      <div class="row">
+        <a class="btn" href="/">Volver al inicio</a>
+        <a class="btn ghost" href="mailto:anfitriochile@gmail.com?subject=Ayuda%20con%20pago%20Anfitrio">Escribir a anfitriochile@gmail.com</a>
+        <a class="btn ghost" href="https://www.instagram.com/anfitriochile" target="_blank" rel="noopener">@anfitriochile</a>
+      </div>
+    </div>
+
+    <footer>Si el problema persiste, responde por correo: <a href="mailto:anfitriochile@gmail.com">anfitriochile@gmail.com</a>.</footer>
+  </div>
+</body>
+</html>
