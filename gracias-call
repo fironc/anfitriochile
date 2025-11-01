@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Gracias — Anfitrio</title>
+  <meta name="description" content="Pago recibido. En las próximas 24 horas recibirás la agenda para organizar una reunión.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#FAFAFA; --paper:#FFFFFF; --ink:#111827; --muted:#6B7280;
+      --teal:#0E7C7B; --teal-2:#0b6464; --line:#E5E7EB; --radius:16px; --shadow:0 10px 30px rgba(0,0,0,.06);
+    }
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui;-webkit-font-smoothing:antialiased}
+    .wrap{max-width:860px;margin:0 auto;padding:28px 20px}
+    header{display:flex;align-items:center;gap:12px;margin:8px 0 24px}
+    header img{height:40px}
+    header .wordmark{font-family:"Space Grotesk",Inter,sans-serif;font-weight:700;letter-spacing:.2px}
+    .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px}
+    .title{display:flex;align-items:center;gap:14px;margin:0 0 6px}
+    .check{width:36px;height:36px;border-radius:50%;background:var(--teal);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:20px}
+    h1{font-family:"Space Grotesk",Inter,sans-serif;font-size:28px;margin:0}
+    p{color:var(--muted);margin:10px 0 0;line-height:1.7}
+    .box{background:#F1FCFA;border:1px solid #D7F3EF;border-radius:12px;padding:14px 16px;margin-top:16px}
+    .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .btn{display:inline-block;background:var(--teal);color:#fff;padding:12px 18px;border-radius:999px;text-decoration:none;font-weight:700}
+    .btn:hover{background:var(--teal-2)}
+    .ghost{background:#fff;color:var(--teal);border:1px solid var(--line)}
+    footer{margin-top:28px;color:var(--muted);font-size:14px;text-align:center}
+    /* confetti-ish */
+    .confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+    .dot{position:absolute;width:8px;height:8px;border-radius:50%;opacity:.9;animation:fall 1.8s ease-out forwards}
+    @keyframes fall { to { transform: translateY(110vh) rotate(220deg); opacity:0 } }
+  </style>
+
+  <!-- Meta Pixel base (optional; keep if you're tracking) -->
+  <script>
+    // Replace YOUR_PIXEL_ID if you use Meta Pixel here
+    // !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    // n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    // n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    // t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script',
+    // 'https://connect.facebook.net/en_US/fbevents.js');
+    // fbq('init', 'YOUR_PIXEL_ID'); fbq('track', 'PageView');
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img src="/img/anfitriochile.png" alt="Anfitrio Chile">
+      <span class="wordmark">Anfitrio Chile</span>
+    </header>
+
+    <div class="card">
+      <div class="title">
+        <span class="check">✓</span>
+        <h1>¡Pago recibido! Gracias por confiar en Anfitrio</h1>
+      </div>
+      <p id="summary">En 24–48 horas recibirás tu reporte en PDF en tu correo. Si quieres agregar información, escribe a <strong id="email">anfitriochile@gmail.com</strong>.</p>
+
+      <div class="box" id="orderBox">
+        <strong>Resumen:</strong>
+        <div id="orderText" style="margin-top:6px">Producto: Call + Reporte — Total: 5 UF</div>
+      </div>
+
+      <div class="row">
+        <a class="btn" href="/">Volver al inicio</a>
+        <a class="btn ghost" href="https://www.instagram.com/anfitriochile" target="_blank" rel="noopener">@anfitriochile</a>
+        <a class="btn ghost" href="mailto:anfitriochile@gmail.com?subject=Consulta%20pedido%20Anfitrio" rel="noopener">Escribir por correo</a>
+      </div>
+    </div>
+
+    <footer>Si algo no calza con tu pago, escribe a <a href="mailto:anfitriochile@gmail.com">anfitriochile@gmail.com</a>.</footer>
+  </div>
+
+  <!-- Tiny confetti for delight -->
+  <div class="confetti" id="confetti"></div>
+
+  <script>
+    // Read amount/product from URL, e.g. /gracias.html?value=34990&product=Chequeo%20R%C3%A1pido
+    const params = new URLSearchParams(location.search);
+    const value = Number(params.get('value') || '34990');
+    const product = decodeURIComponent(params.get('product') || 'Chequeo Rápido');
+    document.getElementById('orderText').textContent = `Producto: ${product} — Total: $${value.toLocaleString('es-CL')} CLP`;
+
+    // Fire Purchase event if Pixel is present
+    if (window.fbq) {
+      fbq('track', 'Purchase', { value, currency: 'CLP', content_name: product });
+    }
+
+    // Simple confetti
+    const c = document.getElementById('confetti');
+    const colors = ['#0E7C7B','#F4B942','#7DD3FC','#A7F3D0','#FDE68A'];
+    for (let i=0;i<40;i++){
+      const d=document.createElement('div'); d.className='dot';
+      d.style.left = (Math.random()*100)+'vw';
+      d.style.background = colors[Math.floor(Math.random()*colors.length)];
+      d.style.transform = `translateY(-10vh) rotate(${Math.random()*60}deg)`;
+      d.style.animationDelay = (Math.random()*0.6)+'s';
+      c.appendChild(d);
+    }
+  </script>
+</body>
+</html>
