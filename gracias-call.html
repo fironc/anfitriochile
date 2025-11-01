@@ -82,7 +82,7 @@
     const params = new URLSearchParams(location.search);
     const value = Number(params.get('value') || '5');
     const product = decodeURIComponent(params.get('product') || 'Call + Reporte');
-    document.getElementById('orderText').textContent = `Producto: ${product} — Total: $${value.toLocaleString('es-CL')} UF`;
+    document.getElementById('orderText').textContent = `Producto: ${product} — Total: ${value.toLocaleString('es-CL')} UF`;
 
     // Fire Purchase event if Pixel is present
     if (window.fbq) {
