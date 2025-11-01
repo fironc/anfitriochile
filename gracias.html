@@ -80,9 +80,9 @@
   <script>
     // Read amount/product from URL, e.g. /gracias.html?value=34990&product=Chequeo%20R%C3%A1pido
     const params = new URLSearchParams(location.search);
-    const value = Number(params.get('value') || '34990');
+    const value = Number(params.get('value') || '2');
     const product = decodeURIComponent(params.get('product') || 'Chequeo Rápido');
-    document.getElementById('orderText').textContent = `Producto: ${product} — Total: $${value.toLocaleString('es-CL')} CLP`;
+    document.getElementById('orderText').textContent = `Producto: ${product} — Total: ${value.toLocaleString('es-CL')} UF`;
 
     // Fire Purchase event if Pixel is present
     if (window.fbq) {
