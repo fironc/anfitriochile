@@ -215,13 +215,61 @@
       </div>
   </section>
 
-  <footer class="wrap">
+    <footer class="wrap">
     <div class="row">
       <div>© <span id="y"></span> Anfitrio Chile · anfitriochile@gmail.com</div>
       <div class="muted">Asesoría y análisis informativo; no hay garantía de resultados. La decisión final depende del cliente, esto corresponde a un análisis consultivo.</div>
     </div>
   </footer>
 
+  <!-- Anfitrio Meta Pixel Funnel -->
+  <script>
+    // 1) ViewContent when offer block exists
+    window.addEventListener('DOMContentLoaded', function () {
+      if (document.querySelector('[data-anfitrio="offer"]')) {
+        fbq('track', 'ViewContent', {
+          content_ids: ['anfitrio-offer'],
+          content_type: 'product'
+        });
+      }
+    });
+
+    // 2) Persist fbclid and append it to Flow URLs
+    (function persistFbclid() {
+      try {
+        const u = new URL(location.href);
+        const fbclid = u.searchParams.get('fbclid');
+        if (fbclid) sessionStorage.setItem('fbclid', fbclid);
+
+        document.querySelectorAll('a[data-anfitrio-checkout]').forEach(function (a) {
+          a.addEventListener('click', function () {
+            try {
+              const out = new URL(a.href);
+              const stored = sessionStorage.getItem('fbclid');
+              if (stored && !out.searchParams.get('fbclid')) {
+                out.searchParams.set('fbclid', stored);
+                a.href = out.toString();
+              }
+            } catch (_) {}
+          }, { capture: true });
+        });
+      } catch (_) {}
+    })();
+
+    // 3) InitiateCheckout on click (report vs call)
+    document.addEventListener('click', function (e) {
+      const el = e.target.closest('[data-anfitrio="buy-report"], [data-anfitrio="buy-call"]');
+      if (!el) return;
+      const isReport = el.matches('[data-anfitrio="buy-report"]');
+      fbq('track', 'InitiateCheckout', {
+        content_ids: [isReport ? 'report-2-uf' : 'call-5-uf'],
+        content_name: isReport ? 'Reporte Anfitrio (2 UF)' : 'Starter Call + Reporte (5 UF)',
+        content_type: 'product'
+      });
+    });
+  </script>
+
+  <!-- Year stamp -->
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
