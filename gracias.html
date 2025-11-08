@@ -35,16 +35,12 @@
     @keyframes fall { to { transform: translateY(110vh) rotate(220deg); opacity:0 } }
   </style>
 
-  <!-- Meta Pixel base (optional; keep if you're tracking) -->
-  <script>
-    // Replace YOUR_PIXEL_ID if you use Meta Pixel here
-    // !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    // n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    // n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    // t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script',
-    // 'https://connect.facebook.net/en_US/fbevents.js');
-    // fbq('init', 'YOUR_PIXEL_ID'); fbq('track', 'PageView');
-  </script>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '2311443705994623');fbq('track', 'PageView');
+</script> <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2311443705994623&ev=PageView&noscript=1"/></noscript>
+<!-- /Meta Pixel -->
+
 </head>
 <body>
   <div class="wrap">
@@ -78,29 +74,43 @@
   <!-- Tiny confetti for delight -->
   <div class="confetti" id="confetti"></div>
 
-  <script>
-    // Read amount/product from URL, e.g. /gracias.html?value=34990&product=Chequeo%20R%C3%A1pido
-    const params = new URLSearchParams(location.search);
-    const value = Number(params.get('value') || '2');
-    const product = decodeURIComponent(params.get('product') || 'Chequeo Rápido');
-    document.getElementById('orderText').textContent = `Producto: ${product} — Total: ${value.toLocaleString('es-CL')} UF`;
+<script>
+  // --- Extract params from Flow return URL ---
+  // Example: https://www.anfitrio.cl/gracias.html?order_id=12345&amount_clp=99990
+  const params = new URLSearchParams(location.search);
+  const orderId = params.get('order_id') || params.get('orden') || 'N/A';
+  const amount = Number(params.get('amount_clp') || params.get('amount') || '0');
+  const product = decodeURIComponent(params.get('product') || 'Chequeo Rápido — 2 UF');
 
-    // Fire Purchase event if Pixel is present
-    if (window.fbq) {
-      fbq('track', 'Purchase', { value, currency: 'CLP', content_name: product });
-    }
+  // Update visible summary
+  document.getElementById('orderText').textContent =
+    `Producto: ${product} — Total: ${amount ? amount.toLocaleString('es-CL') + ' CLP' : '2 UF'}`;
 
-    // Simple confetti
-    const c = document.getElementById('confetti');
-    const colors = ['#0E7C7B','#F4B942','#7DD3FC','#A7F3D0','#FDE68A'];
-    for (let i=0;i<40;i++){
-      const d=document.createElement('div'); d.className='dot';
-      d.style.left = (Math.random()*100)+'vw';
-      d.style.background = colors[Math.floor(Math.random()*colors.length)];
-      d.style.transform = `translateY(-10vh) rotate(${Math.random()*60}deg)`;
-      d.style.animationDelay = (Math.random()*0.6)+'s';
-      c.appendChild(d);
-    }
-  </script>
+  // --- Fire Purchase if Pixel loaded ---
+  if (window.fbq) {
+    fbq('track', 'Purchase', {
+      content_ids: ['report-2-uf'],
+      content_name: product,
+      content_type: 'product',
+      value: amount || 0,
+      currency: 'CLP',
+      order_id: orderId
+    });
+  }
+
+  // --- Confetti animation (same as before) ---
+  const c = document.getElementById('confetti');
+  const colors = ['#0E7C7B','#F4B942','#7DD3FC','#A7F3D0','#FDE68A'];
+  for (let i = 0; i < 40; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot';
+    d.style.left = (Math.random() * 100) + 'vw';
+    d.style.background = colors[Math.floor(Math.random() * colors.length)];
+    d.style.transform = `translateY(-10vh) rotate(${Math.random() * 60}deg)`;
+    d.style.animationDelay = (Math.random() * 0.6) + 's';
+    c.appendChild(d);
+  }
+</script>
+
 </body>
 </html>
