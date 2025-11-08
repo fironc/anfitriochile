@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://anfitrio.cl/sitemap.xml
