@@ -9,15 +9,11 @@
   <link rel="canonical" href="https://www.anfitrio.cl/">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#FAFAFA; --paper:#FFFFFF; --ink:#111827; --muted:#6B7280;
-      --teal:#0E7C7B; --teal-2:#0b6464; --line:#E5E7EB; --radius:16px; --shadow:0 10px 30px rgba(0,0,0,.06);
-    }
-    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui;-webkit-font-smoothing:antialiased}
+    :root{--bg:#FAFAFA;--paper:#FFFFFF;--ink:#111827;--muted:#6B7280;--teal:#0E7C7B;--teal-2:#0b6464;--line:#E5E7EB;--radius:16px;--shadow:0 10px 30px rgba(0,0,0,.06)}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui;-webkit-font-smoothing:antialiased}
     .wrap{max-width:860px;margin:0 auto;padding:28px 20px}
     header{display:flex;align-items:center;gap:12px;margin:8px 0 24px}
-    header img{height:40px}
-    header .wordmark{font-family:"Space Grotesk",Inter,sans-serif;font-weight:700;letter-spacing:.2px}
+    header img{height:40px}.wordmark{font-family:"Space Grotesk",Inter,sans-serif;font-weight:700;letter-spacing:.2px}
     .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px}
     .title{display:flex;align-items:center;gap:14px;margin:0 0 6px}
     .check{width:36px;height:36px;border-radius:50%;background:var(--teal);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:20px}
@@ -26,91 +22,80 @@
     .box{background:#F1FCFA;border:1px solid #D7F3EF;border-radius:12px;padding:14px 16px;margin-top:16px}
     .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
     .btn{display:inline-block;background:var(--teal);color:#fff;padding:12px 18px;border-radius:999px;text-decoration:none;font-weight:700}
-    .btn:hover{background:var(--teal-2)}
-    .ghost{background:#fff;color:var(--teal);border:1px solid var(--line)}
+    .btn:hover{background:var(--teal-2)}.ghost{background:#fff;color:var(--teal);border:1px solid var(--line)}
     footer{margin-top:28px;color:var(--muted);font-size:14px;text-align:center}
-    /* confetti-ish */
     .confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden}
     .dot{position:absolute;width:8px;height:8px;border-radius:50%;opacity:.9;animation:fall 1.8s ease-out forwards}
-    @keyframes fall { to { transform: translateY(110vh) rotate(220deg); opacity:0 } }
+    @keyframes fall{to{transform:translateY(110vh) rotate(220deg);opacity:0}}
   </style>
 
-<!-- Meta Pixel -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '2311443705994623');fbq('track', 'PageView');
-</script> <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2311443705994623&ev=PageView&noscript=1"/></noscript>
-<!-- /Meta Pixel -->
-
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','2311443705994623'); fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2311443705994623&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <img src="/img/anfitriochile.png" alt="Anfitrio Chile">
-      <span class="wordmark">Anfitrio Chile</span>
+      <img src="/img/anfitriochile.png" alt="Anfitrio Chile"><span class="wordmark">Anfitrio Chile</span>
     </header>
 
     <div class="card">
-      <div class="title">
-        <span class="check">✓</span>
-        <h1>¡Pago recibido! Gracias por confiar en Anfitrio</h1>
-      </div>
-      <p id="summary">En 24–48 horas recibirás tu reporte en PDF en tu correo. Si quieres agregar información, escribe a <strong id="email">anfitriochile@gmail.com</strong>.</p>
+      <div class="title"><span class="check">✓</span><h1>¡Pago recibido! Gracias por confiar en Anfitrio</h1></div>
+      <p>En 24–48 horas recibirás tu reporte en PDF en tu correo. Si quieres agregar información, escribe a <strong>anfitriochile@gmail.com</strong>.</p>
 
-      <div class="box" id="orderBox">
-        <strong>Resumen:</strong>
-        <div id="orderText" style="margin-top:6px">Producto: Chequeo Rápido — Total: 2 UF</div>
+      <div class="box"><strong>Resumen:</strong>
+        <div style="margin-top:6px">Producto: Chequeo Rápido — Total: 2 UF</div>
       </div>
 
       <div class="row">
         <a class="btn" href="/">Volver al inicio</a>
         <a class="btn ghost" href="https://www.instagram.com/anfitriochile" target="_blank" rel="noopener">@anfitriochile</a>
-        <a class="btn ghost" href="mailto:anfitriochile@gmail.com?subject=Consulta%20pedido%20Anfitrio" rel="noopener">Escribir por correo</a>
+        <a class="btn ghost" href="mailto:anfitriochile@gmail.com?subject=Consulta%20pedido%20Anfitrio">Escribir por correo</a>
       </div>
     </div>
 
     <footer>Si algo no calza con tu pago, escribe a <a href="mailto:anfitriochile@gmail.com">anfitriochile@gmail.com</a>.</footer>
   </div>
 
-  <!-- Tiny confetti for delight -->
   <div class="confetti" id="confetti"></div>
 
-<script>
-  // --- Extract params from Flow return URL ---
-  // Example: https://www.anfitrio.cl/gracias.html?order_id=12345&amount_clp=99990
-  const params = new URLSearchParams(location.search);
-  const orderId = params.get('order_id') || params.get('orden') || 'N/A';
-  const amount = Number(params.get('amount_clp') || params.get('amount') || '0');
-  const product = decodeURIComponent(params.get('product') || 'Chequeo Rápido — 2 UF');
+  <script>
+    // Fire Purchase ONCE to avoid double fires on refresh
+    (function(){
+      try{
+        const key='anfitrio_purchase_2uf';
+        if(!sessionStorage.getItem(key)){
+          fbq('track','Purchase',{
+            value: 2,
+            currency: 'CLF',
+            content_ids: ['report-2-uf'],
+            content_name: 'Reporte Anfitrio (2 UF)',
+            content_type: 'product'
+          });
+          sessionStorage.setItem(key,'1');
+        }
+      }catch(_){}
+    })();
 
-  // Update visible summary
-  document.getElementById('orderText').textContent =
-    `Producto: ${product} — Total: ${amount ? amount.toLocaleString('es-CL') + ' CLP' : '2 UF'}`;
-
-  // --- Fire Purchase if Pixel loaded ---
-  if (window.fbq) {
-    fbq('track', 'Purchase', {
-      content_ids: ['report-2-uf'],
-      content_name: product,
-      content_type: 'product',
-      value: amount || 0,
-      currency: 'CLP',
-      order_id: orderId
-    });
-  }
-
-  // --- Confetti animation (same as before) ---
-  const c = document.getElementById('confetti');
-  const colors = ['#0E7C7B','#F4B942','#7DD3FC','#A7F3D0','#FDE68A'];
-  for (let i = 0; i < 40; i++) {
-    const d = document.createElement('div');
-    d.className = 'dot';
-    d.style.left = (Math.random() * 100) + 'vw';
-    d.style.background = colors[Math.floor(Math.random() * colors.length)];
-    d.style.transform = `translateY(-10vh) rotate(${Math.random() * 60}deg)`;
-    d.style.animationDelay = (Math.random() * 0.6) + 's';
-    c.appendChild(d);
-  }
-</script>
-
+    // Tiny confetti
+    const c=document.getElementById('confetti');
+    const colors=['#0E7C7B','#F4B942','#7DD3FC','#A7F3D0','#FDE68A'];
+    for(let i=0;i<40;i++){
+      const d=document.createElement('div');d.className='dot';
+      d.style.left=(Math.random()*100)+'vw';
+      d.style.background=colors[Math.floor(Math.random()*colors.length)];
+      d.style.transform=`translateY(-10vh) rotate(${Math.random()*60}deg)`;
+      d.style.animationDelay=(Math.random()*0.6)+'s';
+      c.appendChild(d);
+    }
+  </script>
 </body>
 </html>
